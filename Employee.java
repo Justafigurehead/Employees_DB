@@ -55,7 +55,37 @@ public class Employee {
         } finally {
             SqlRunner.closeConnection();
         }
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public static void deleteAll(){
+        String sql = "DELETE FROM employees";
+        SqlRunner.executeUpdate(sql);
+        SqlRunner.closeConnection();
+    }
+
+    public void deleteEmployee(){
+        String sql = String.format("Delete FROM employees WHERE id = %d",this.id);
+        SqlRunner.executeUpdate(sql);
+        SqlRunner.closeConnection();
+    }
+
+    public void updateEmployee(){
+        int department_id = department.getId();
+        String sql = String.format("UPDATE employees SET name = '%s', salary = %7.2f, department_id = %d WHERE id = %d", this.name, this.salary, department_id, this.id);
+        SqlRunner.executeUpdate(sql);
+        SqlRunner.closeConnection();
     }
 }
 

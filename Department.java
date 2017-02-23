@@ -42,4 +42,26 @@ public class Department {
             SqlRunner.closeConnection();
         }
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public static void deleteAll(){
+        String sql = "Delete FROM departments";
+        SqlRunner.executeUpdate(sql);
+        SqlRunner.closeConnection();
+    }
+
+    public void deleteDepartment(){
+        String sql = String.format("DELETE FROM departments WHERE id = %d", this.id);
+        SqlRunner.executeUpdate(sql);
+        SqlRunner.closeConnection();
+    }
+
+    public void updateDepartment(){
+        String sql = String.format("UPDATE departments SET title = '%s' WHERE id = %d", this.title, this.id);
+        SqlRunner.executeUpdate(sql);
+        SqlRunner.closeConnection();
+    }
 }
